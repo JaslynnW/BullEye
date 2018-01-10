@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import QuartzCore
 
 class ViewController: UIViewController {
     var currentValue: Int = 50
@@ -75,12 +76,19 @@ class ViewController: UIViewController {
         scoreLabel.text = String(score)
 
     }
+    
     @IBAction func startOver() {
         roundNum = roundNum + 1
         roundLabel.text=String(roundNum)
         score = 0
         scoreLabel.text=String(score)
         startNewRound()
+        let transition = CATransition()
+        transition.type = kCATransitionFade
+        transition.duration = 1
+        transition.timingFunction = CAMediaTimingFunction(name:kCAMediaTimingFunctionEaseOut)
+        view.layer.add(transition, forKey: nil)
     }
+    
 }
 
